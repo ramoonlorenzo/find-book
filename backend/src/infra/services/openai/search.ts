@@ -19,7 +19,8 @@ export async function searchOpenAI(input: string): Promise<GptResponse> {
         - Identificar se a mensagem do usuário corresponde a alguma categoria da lista de categorias em português ou inglês. Caso não seja, retorne a categoria do livro encontrado.
         - Realizar uma busca por title, authors, categories e longDescription
         - Retornar sempre o primeiro autor da lista de authors
-        - Instruções de formato de saída para JSON: {title: string, authors: string, categories: string, longDescription: string}`,
+        - Instruções de formato de saída para JSON: {title: string, authors: string, categories: string, longDescription: string}
+        - Retornar todas as informações em inglês`,
         },
         {
           role: "user",
@@ -31,7 +32,6 @@ export async function searchOpenAI(input: string): Promise<GptResponse> {
       },
       model: "gpt-3.5-turbo-1106",
     });
-    console.log("🚀 ~ searchOpenAI ~ response:", response);
     const output = JSON.parse(response.choices[0].message.content!);
     return output;
   } catch (error: any) {
